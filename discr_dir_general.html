@@ -40,7 +40,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-0115020a241d7d5b49a351993ae89560.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-50b4abff8b0f30bb501ab99a3cda6e79.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -187,6 +187,12 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="./intro_references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Literature for the course</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro_similar.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Similar courses</span></a>
   </div>
 </li>
       </ul>
@@ -338,7 +344,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./discr_dir_mpc_solvers.html" class="sidebar-item-text sidebar-link">
+  <a href="./discr_dir_mpc_software.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Numerical solvers for MPC</span></a>
   </div>
 </li>
@@ -950,17 +956,17 @@ window.Quarto = {
 </header>
 
 
-<p>In this section we formulate a finite-horizon optimal control problem (OCP) for a discrete-time dynamical system as a mathematical optimization (also mathematical programming) problem, which can then be solved numerically by a suitable solvers for nonlinear programming (NLP), or possibly quadratic programming (QP). The outcome of such numerical optimization is an optimal control trajectory (a sequence of controls), which is why this approach is called <em>direct</em> – we optimize directly over the trajectories.</p>
-<p>In the following chapter we then present an alternative – <em>indirect</em> – approach, wherein the conditions of optimality are formulated first. These come in the form of a set of equations, some of them recurrent/recursive, some just algebraic. The indirect approach amounts to solving such equations.</p>
+<p>In this section we formulate a finite-horizon optimal control problem (OCP) for a discrete-time dynamical system as a mathematical optimization problem (also mathematical program), which can then be solved numerically by a suitable numerical solver for nonlinear programming (NLP), or possibly quadratic programming (QP). The outcome of such numerical optimization is an optimal control <em>trajectory</em> (a sequence of controls), which is why this approach is called <em>direct</em> – we optimize directly over the trajectories.</p>
+<p>In the following chapter we then present an alternative – <em>indirect</em> – approach, wherein the conditions of optimality are formulated first. These come in the form of a set of equations, some of them recurrent/recursive, some just algebraic. The indirect approach thus amounts to solving such equations.</p>
 <p>And then in another chapter we present the third approach – <em>dynamic programming</em>.</p>
 <p>The three approaches form the backbone of the theory of optimal control for discrete-time systems, but later we are going to recognize the same triplet in the context of continuous-time systems.</p>
-<div class="cell" data-layout-align="default">
+<div class="cell" data-fig-height="200px" data-layout-align="default">
 <div class="cell-output-display">
 <div id="fig-discrete-direct-indirect-dp" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-discrete-direct-indirect-dp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div>
-<svg width="672" height="480" viewbox="0.00 0.00 411.40 116.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
+<svg width="672" height="200" viewbox="0.00 0.00 411.40 116.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none">
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 112)">
 <title>G</title>
 <!-- discrete_time_optimal_control -->
@@ -1016,7 +1022,7 @@ Figure&nbsp;1: Three approaches to discrete-time optimal control
 </div>
 </div>
 </div>
-<p>But now back to the direct approaches. We will start with a general nonlinear discrete-time optimal control problem in this section and then specialize to the linear quadratic regulation (LQR) problem in the next section. Finally, since the computed control trajectory constitutes an open-loop control scheme, something must be done about it if feedback scheme is preferred – we introduce the concept of a <em>receding horizon control </em>(RHC), perhaps better known as <em>model predictive control </em>(MPC), that turns the direct approach into a feedback control scheme.</p>
+<p>But now back to the direct approach. We will start with a general nonlinear discrete-time optimal control problem in this section, and then specialize to the linear quadratic regulation (LQR) problem in the next section. Finally, since the computed control trajectory constitutes an open-loop control scheme, something must be done about it if a feedback scheme is preferred – we introduce the concept of a <em>receding horizon control </em>(RHC), perhaps better known as <em>model predictive control </em>(MPC), which turns the direct approach into a feedback control scheme.</p>
 <p>We start by considering a nonlinear discrete-time system modelled by the state equation <span class="math display">
 \bm x_{k+1} = \mathbf f_k(\bm x_k,\bm u_k),
 </span> where</p>
@@ -1054,19 +1060,19 @@ Figure&nbsp;1: Three approaches to discrete-time optimal control
 \begin{aligned}
 \operatorname*{minimize}_{\bm u_i,\ldots, \bm u_{N-1}, \bm x_{i},\ldots, \bm x_N}&amp;\quad \left(\phi(\bm x_N,N) + \sum_{k=i}^{N-1} L_k(\bm x_k,\bm u_k) \right)\\
 \text{subject to}  &amp;\quad \bm x_{k+1} = \mathbf f_k(\bm x_k,\bm u_k),\quad k=i, \ldots, N-1,\\
-                    &amp;\quad \bm u_{\min} \leq \bm u_k \leq \bm u_{\max},\\
-                    &amp;\quad \bm x_{\min} \leq \bm x_k \leq \bm x_{\max},\\
+                    &amp;\quad \mathbf u^{\min} \leq \bm u_k \leq \mathbf u^{\max},\\
+                    &amp;\quad \mathbf x^{\min} \leq \bm x_k \leq \mathbf x^{\max},\\
                     &amp;\quad\bm x_i = \mathbf x^\text{init},\\
-                    &amp;\quad \left(\bm x_N = \mathbf x^\text{ref}, \; \text{or} \; \mathbf h_\text{final}(\bm x_N) =  \mathbf 0, \text{or} \; \mathbf g_\text{final}(\bm x_N) \leq  \mathbf 0\right),                    
+                    &amp;\quad \left(\bm x_N = \mathbf x^\text{ref}, \; \text{or} \; \mathbf h^\text{final}(\bm x_N) =  \mathbf 0, \text{or} \; \mathbf g^\text{final}(\bm x_N) \leq  \mathbf 0\right),                    
 \end{aligned}
 </span> where</p>
 <ul>
 <li>the inequalities should be interpreted componentwise,</li>
-<li><span class="math inline">\bm u_{\min}</span> and <span class="math inline">\bm u_{\max}</span> are lower and upper bounds on the control, respectively,</li>
-<li><span class="math inline">\bm x_{\min}</span> and <span class="math inline">\bm x_{\max}</span> are lower and upper bounds on the state, respectively,</li>
+<li><span class="math inline">\mathbf u^{\min}</span> and <span class="math inline">\mathbf u^{\max}</span> are lower and upper bounds on the control, respectively,</li>
+<li><span class="math inline">\mathbf x^{\min}</span> and <span class="math inline">\mathbf x^{\max}</span> are lower and upper bounds on the state, respectively,</li>
 <li><span class="math inline">\mathbf x^\text{init}</span> is a fixed initial state,</li>
 <li><span class="math inline">\mathbf x^\text{ref}</span> is a required (reference) final state,</li>
-<li>and the functions <span class="math inline">\mathbf g_\text{final}()</span> and <span class="math inline">\mathbf h_\text{final}()</span> can be used to define the constraint set for the final state.</li>
+<li>and the functions <span class="math inline">\mathbf g^\text{final}()</span> and <span class="math inline">\mathbf h^\text{final}()</span> can be used to define the constraint set for the final state.</li>
 </ul>
 <p>This optimal control problem is an instance of a general nonlinear programming (NLP) problem <span class="math display">
 \begin{aligned}

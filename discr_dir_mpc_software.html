@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Indirect approach to optimal control – B(E)3M35ORR – Optimal and Robust Control</title>
+<title>Numerical solvers for MPC – B(E)3M35ORR – Optimal and Robust Control</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./cont_indir_LQR_fin_horizon.html" rel="next">
-<link href="./cont_indir_calculus_of_variations.html" rel="prev">
+<link href="./discr_dir_references.html" rel="next">
+<link href="./discr_dir_mpc.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -82,7 +82,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./cont_indir_overview.html">7. Continuous-time optimal control - indirect approach via calculus of variations</a></li><li class="breadcrumb-item"><a href="./cont_indir_via_calculus_of_variations.html">Indirect approach to optimal control</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./discr_dir_goals.html">3. Discrete-time optimal control – direct approach</a></li><li class="breadcrumb-item"><a href="./discr_dir_mpc_software.html">Numerical solvers for MPC</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -301,7 +301,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./discr_dir_mpc_software.html" class="sidebar-item-text sidebar-link">
+  <a href="./discr_dir_mpc_software.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Numerical solvers for MPC</span></a>
   </div>
 </li>
@@ -495,7 +495,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./cont_indir_via_calculus_of_variations.html" class="sidebar-item-text sidebar-link active">
+  <a href="./cont_indir_via_calculus_of_variations.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Indirect approach to optimal control</span></a>
   </div>
 </li>
@@ -894,9 +894,9 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./cont_indir_overview.html">7. Continuous-time optimal control - indirect approach via calculus of variations</a></li><li class="breadcrumb-item"><a href="./cont_indir_via_calculus_of_variations.html">Indirect approach to optimal control</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./discr_dir_goals.html">3. Discrete-time optimal control – direct approach</a></li><li class="breadcrumb-item"><a href="./discr_dir_mpc_software.html">Numerical solvers for MPC</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Indirect approach to optimal control</h1>
+<h1 class="title">Numerical solvers for MPC</h1>
 </div>
 
 
@@ -913,6 +913,19 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p>Essentially QP solvers with some extra features for MPC:</p>
+<ul>
+<li><p>warmstarting requires fesibility of the previous solution. If only a fixed number of iterations is allowed (in favor of predictable timing), for some methods the iterations may temporarily lose feasibility.</p></li>
+<li><p>…</p></li>
+<li><p><a href="https://github.com/coin-or/qpOASES">qpOASES</a></p></li>
+<li><p><a href="https://osqp.org">OSQP</a></p></li>
+<li><p><a href="https://github.com/darnstrom/daqp">DAQP</a></p></li>
+<li><p><a href="https://github.com/qpSWIFT/qpSWIFT">qpSWIFT</a></p></li>
+<li><p><a href="https://github.com/Simple-Robotics/proxsuite">ProxQP</a></p></li>
+<li><p><a href="https://github.com/PREDICT-EPFL/piqp">PiQP</a></p></li>
+<li><p><a href="https://github.com/embotech/ecos">ECOS</a></p></li>
+<li><p><a href="https://github.com/giaf/hpipm">HPIPM</a></p></li>
+</ul>
 
 
 
@@ -1336,13 +1349,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./cont_indir_calculus_of_variations.html" class="pagination-link" aria-label="Calculus of variations">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Calculus of variations</span>
+      <a href="./discr_dir_mpc.html" class="pagination-link" aria-label="Model predictive control (MPC)">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Model predictive control (MPC)</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./cont_indir_LQR_fin_horizon.html" class="pagination-link" aria-label="Indirect approach to LQR on a finite horizon">
-        <span class="nav-page-text">Indirect approach to LQR on a finite horizon</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./discr_dir_references.html" class="pagination-link" aria-label="References">
+        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
