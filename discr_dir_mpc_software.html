@@ -893,8 +893,8 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#linear-mpc" id="toc-linear-mpc" class="nav-link active" data-scroll-target="#linear-mpc">Linear MPC</a></li>
-  <li><a href="#nonlinear-mpc" id="toc-nonlinear-mpc" class="nav-link" data-scroll-target="#nonlinear-mpc">Nonlinear MPC</a></li>
+  <li><a href="#qp-solvers-suitable-for-linear-mpc" id="toc-qp-solvers-suitable-for-linear-mpc" class="nav-link active" data-scroll-target="#qp-solvers-suitable-for-linear-mpc">QP solvers suitable for (linear) MPC</a></li>
+  <li><a href="#higher-level-tools" id="toc-higher-level-tools" class="nav-link" data-scroll-target="#higher-level-tools">Higher-level tools</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/hurak/orr/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -920,14 +920,14 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="linear-mpc" class="level2">
-<h2 class="anchored" data-anchor-id="linear-mpc">Linear MPC</h2>
-<p>QP solvers with some extra features for MPC:</p>
+<section id="qp-solvers-suitable-for-linear-mpc" class="level2">
+<h2 class="anchored" data-anchor-id="qp-solvers-suitable-for-linear-mpc">QP solvers suitable for (linear) MPC</h2>
+<p>The extra features needed for MPC:</p>
 <ul>
 <li>warmstarting requires fesibility of the previous solution. Some methods the iterations may temporarily lose feasibility, which can be a problem if only a fixed number of iterations is allowed (in favor of predictable timing).</li>
 <li>…</li>
 </ul>
-<p>A curated list is maintained at <a href="https://github.com/qpsolvers/qpbenchmark">https://github.com/qpsolvers/qpbenchmark</a>. Below are a few most popular from the open-source domain:</p>
+<p>A curated list of QP solvers is maintained at <a href="https://github.com/qpsolvers/qpbenchmark">https://github.com/qpsolvers/qpbenchmark</a>. Below are a few most popular from the open-source domain:</p>
 <ul>
 <li><a href="https://github.com/coin-or/qpOASES">qpOASES</a></li>
 <li><a href="https://osqp.org">OSQP</a></li>
@@ -939,10 +939,13 @@ ul.task-list li input[type="checkbox"] {
 <li><a href="https://github.com/giaf/hpipm">HPIPM</a></li>
 </ul>
 </section>
-<section id="nonlinear-mpc" class="level2">
-<h2 class="anchored" data-anchor-id="nonlinear-mpc">Nonlinear MPC</h2>
+<section id="higher-level-tools" class="level2">
+<h2 class="anchored" data-anchor-id="higher-level-tools">Higher-level tools</h2>
 <ul>
-<li><a href="https://docs.acados.org">acados</a></li>
+<li><a href="https://docs.acados.org">acados</a> – free &amp; open source.</li>
+<li><a href="https://github.com/JuliaControl/ModelPredictiveControl.jl">ModelPredictiveControl.jl</a> – free &amp; open source</li>
+<li><a href="https://www.mathworks.com/products/model-predictive-control.html">Model Predictive Control Toolbox for Matlab</a> – commercial (by The Mathworks). the generated C code follows several industrial standards.</li>
+<li><a href="https://www.embotech.com/softwareproducts/forcespro/overview/">ForcesPro</a> – commercial (by Embotech)</li>
 </ul>
 
 
