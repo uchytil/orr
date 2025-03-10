@@ -1049,8 +1049,21 @@ We all do MPC in our everyday lives
 \end{aligned}
 </span></p>
 <p>Now, in a model predictive control (MPC) scheme, at the discrete time <span class="math inline">t</span>, an LQR problem on a finite (and typically only modestly long time prediction horizon <span class="math inline">N_\mathrm{p}</span> (typically <span class="math inline">N_\mathrm{p}\approx 20</span> or 30 or so) is formulated and solved. This time window then moves (recedes, rolls) either forever or untill the the final time <span class="math inline">N</span> is reached.</p>
-<p>Since the problem is parameterized by the “initial” time <span class="math inline">t</span> and the state at this time, we need to reflect this in the notation. Namely, <span class="math display">\bm x_{t+k|t}</span> is the predicted state at time <span class="math inline">t+k</span> as predicted at time <span class="math inline">t</span> using the information available at that time, that is, <span class="math inline">\mathbf x_t (= \bm x_{t|t})</span> and the computed control trajectory up to the time just one step before <span class="math inline">t+k</span>. We can emphasize this dependence by writing it explicitly as <span class="math display">\bm x_{t+k|t}(\bm x_t, \bm u_{t}, \bm u_{t+1}, \ldots, \bm u_{t+k-1}),</span> but then the notation becomes too convolved, and we stick to the shorter one. We emphasize that it is really just a prediction. The true state at time <span class="math inline">t+k</span> is denoted <span class="math inline">\bm x_{t+k}</span>. Similarly, <span class="math display">\bm u_{t+k|t}</span> is the future control at <span class="math inline">t+k</span> as computed at time <span class="math inline">t</span> using the information available at that time, that is, <span class="math inline">\bm x_t</span>.</p>
-<p><span class="math display">
+<p>Since the problem is parameterized by the “initial” time <span class="math inline">t</span> and the state at this time, we need to reflect this in the notation. Namely, <span class="math display">\bm x_{t+k|t}</span> is the predicted state at time <span class="math inline">t+k</span> as predicted at time <span class="math inline">t</span> using the information available at that time, that is, <span class="math inline">\mathbf x_t (= \bm x_{t|t})</span> and the computed control trajectory up to the time just one step before <span class="math inline">t+k</span>. We can emphasize this dependence by writing it explicitly as <span class="math display">\bm x_{t+k|t}(\bm x_t, \bm u_{t}, \bm u_{t+1}, \ldots, \bm u_{t+k-1}),</span> but then the notation becomes rather convoluted and so we stick to the shorter one. We emphasize that it is really just a prediction. The true state at time <span class="math inline">t+k</span> is denoted <span class="math inline">\bm x_{t+k}</span>. Similarly, <span class="math display">\bm u_{t+k|t}</span> is the future control at <span class="math inline">t+k</span> as computed at time <span class="math inline">t</span> using the information available at that time, that is, <span class="math inline">\bm x_t</span>.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Altenative notation for the optimization variables
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you find the notation <span class="math inline">\bm x_{t+k|t}</span> clumsy, feel free to replace it with something simpler that does not explicitly mention the time at which the prediction/optimization is made but does not conflict with the true state at the given time. Perhaps just using a different letter like <span class="math inline">\bm z_k</span> while understanding <span class="math inline">k</span> relative with respect to the current time.</p>
+</div>
+</div>
+<p>The optimization problem to be solved at every discrete- time <span class="math inline">t</span> is <span class="math display">
 \begin{aligned}
 \operatorname*{minimize}_{\bm u_{t|t},u_{t+1}\ldots, \bm u_{t+N_\mathrm{p}-1}, \bm x_{t|t},\ldots, \bm x_{t+N_\mathrm{p}|t}} &amp;\quad  \frac{1}{2} \bm x_{t+N_\mathrm{p}|t}^\top \mathbf S \bm x_{t+N_\mathrm{p}|t} + \frac{1}{2} \sum_{k=0}^{N_\mathrm{p}-1} \left(\bm x_{t+k|t}^\top \mathbf Q \bm x_{t+k|t} + \bm u_{t+k|t}^\top \mathbf R \bm u_{t+k|t} \right)\\
 \text{subject to}   &amp;\quad \bm x_{t+k+1|t} = \mathbf A\bm x_{t+k|t} + \mathbf B\bm u_{t+k|t},\quad k = 0, \ldots, N_\mathrm{p}-1, \\
@@ -1085,20 +1098,20 @@ We all do MPC in our everyday lives
 <p>We sketch the scheme here. For the original problem formulation with the hard constraints on the output variables</p>
 <p><span class="math display">
 \begin{aligned}
-\operatorname*{minimize}_{\Delta \bm u_1,\ldots, \Delta \bm u_{N-1}} &amp;\quad \sum_k^N \left[\ldots \right]\\
-\text{subject to}   &amp;\quad \bm x_{k+1} = \mathbf A\bm x_k + \mathbf B\bm u_k,\quad k = 0, \ldots, N-1, \\
-                    &amp;\quad \bm y_{k} = \mathbf C\bm x_k + \mathbf D\bm u_k,\\
-                    &amp;\quad \bm x_0 = \mathbf x_0,\\
+\operatorname*{minimize}_{\bm u_1,\ldots, \bm u_{N-1}} &amp;\quad \sum_k^N \left[\ldots \right]\\
+\text{subject to}   &amp;\quad \bm x_{t+k+1|t} = \mathbf A\bm x_{t+k|t} + \mathbf B\bm u_{t+k|t},\quad k = 0, \ldots, N-1, \\
+                    &amp;\quad \bm y_{t+k|t} = \mathbf C\bm x_{t+k|t} + \mathbf D\bm u_{t+k|t},\\
+                    &amp;\quad \bm x_{t|t} = \mathbf x_t,\\
                     &amp;\quad \ldots \\
-                    &amp;\quad \mathbf y^{\min} \leq \bm y_k \leq \mathbf y^{\max}.
+                    &amp;\quad \mathbf y^{\min} \leq \bm y_{t+k|t} \leq \mathbf y^{\max}.
 \end{aligned}
 </span></p>
 <p>we propose the version with soft constraints <span class="math display">
 \begin{aligned}
-\operatorname*{minimize}_{\Delta \bm u_1,\ldots, \Delta \bm u_{N-1}, {\color{red}\epsilon}} &amp;\quad \sum_k^N  \left[\ldots {+ \color{red}\gamma \epsilon} \right]\\
-\text{subject to}   &amp;\quad \bm x_{k+1} = \mathbf A\bm x_k + \mathbf B\bm u_k,\quad k = 0, \ldots, N-1, \\
-                    &amp;\quad \bm y_{k} = \mathbf C\bm x_k + \mathbf D\bm u_k,\\
-                    &amp;\quad \bm x_0 = \mathbf x_0,\\
+\operatorname*{minimize}_{\bm u_1,\ldots, \bm u_{N-1}, {\color{red}\epsilon}} &amp;\quad \sum_k^N  \left[\ldots {+ \color{red}\gamma \epsilon} \right]\\
+\text{subject to}   &amp;\quad \bm x_{t+k+1|t} = \mathbf A\bm x_{t+k|t} + \mathbf B\bm u_{t+k|t},\quad k = 0, \ldots, N-1, \\
+                    &amp;\quad \bm y_{t+k|t} = \mathbf C\bm x_{t+k|t} + \mathbf D\bm u_{t+k|t},\\
+                    &amp;\quad \bm x_{t|t} = \mathbf x_t,\\
                     &amp;\quad \ldots \\
                     &amp;\quad \mathbf y^{\min} {\color{red}- \epsilon \mathbf v} \leq \bm y_k \leq \mathbf y^{\max} {\color{red}+ \epsilon \mathbf v},
 \end{aligned}
@@ -1121,7 +1134,7 @@ Requirements expressed through constraints or an extra term in the cost function
 <h2 class="anchored" data-anchor-id="prediction-horizon-vs-control-horizon">Prediction horizon vs control horizon</h2>
 <p>One of the key parameters of a model predictive control is the <em>prediction horizon</em> <span class="math inline">N_\mathrm{p}</span>. It must be long enough so that the key dynamics of the system has enough time to exhibit, and yet it must not be too long, because the computational load will be then too high. A rule of thumb (but certainly not a law) is <span class="math inline">N_\mathrm{p}\approx 20</span>. There is one simple way to reduce the computational load – consider the control trajectory defined on a much shorted time horizon than the predicted state trajectory. Namely, we introduce the <em>control horizon</em> <span class="math inline">N_\mathrm{c} &lt; N_\mathrm{p}</span> (typically <span class="math inline">N_\mathrm{c}</span> can be as small as 2 or 3 or so), and we only consider the control as optimizable on this short horizon. Of course, we must provide some values after this horizon as well (untill the end of the prediction horizon). The simplest strategy is to set it to the last value on the control horizon. The MPC problem then changes to <span class="math display">
 \begin{aligned}
-\operatorname*{minimize}_{\bm u_{t|t},u_{t+1}\ldots, \bm u_{t+{\color{red}N_\mathrm{c}}-1}, \bm x_{t|t},\ldots, \bm x_{t+N_\mathrm{p}|t}} &amp;\quad  \frac{1}{2} \bm x_{t+N_\mathrm{p}|t}^\top \mathbf S \bm x_{t+N_\mathrm{p}|t} + \frac{1}{2} \sum_{k=0}^{N_\mathrm{p}-1} \bm x_{t+k|t}^\top \mathbf Q \bm x_{t+k|t} + + \frac{1}{2} \sum_{k=0}^{{\color{red}N_\mathrm{c}}-1} \bm u_{t+k|t}^\top \mathbf R \bm u_{t+k|t}\\
+\operatorname*{minimize}_{\bm u_{t|t},u_{t+1|t}\ldots, \bm u_{t+{\color{red}N_\mathrm{c}}-1|t}, \bm x_{t|t},\ldots, \bm x_{t+N_\mathrm{p}|t}} &amp;\quad  \frac{1}{2} \bm x_{t+N_\mathrm{p}|t}^\top \mathbf S \bm x_{t+N_\mathrm{p}|t} + \frac{1}{2} \sum_{k=0}^{N_\mathrm{p}-1} \bm x_{t+k|t}^\top \mathbf Q \bm x_{t+k|t} + + \frac{1}{2} \sum_{k=0}^{{\color{red}N_\mathrm{c}}-1} \bm u_{t+k|t}^\top \mathbf R \bm u_{t+k|t}\\
 \text{subject to}   &amp;\quad \bm x_{t+k+1|t} = \mathbf A\bm x_{t+k|t} + \mathbf B\bm u_{t+k|t},\quad k = 0, \ldots, N_\mathrm{p}-1, \\
                     &amp;\quad \bm x_{t|t} = \mathbf x_t, \\
                     &amp;\quad \mathbf u^{\min} \leq \bm u_{t+k|t} \leq \mathbf u^{\max},\\
