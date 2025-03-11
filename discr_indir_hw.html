@@ -1021,7 +1021,7 @@ window.Quarto = {
 \ddot \theta(t) &amp;= \alpha(t).
 \end{align*}</span></p>
 <p>The concrete control goal is to bring the quadrotor from the initial state <span class="math inline">y(0)=1,\,\dot y(0)=\theta(0)=\dot \theta(0)=0</span> to the final state <span class="math inline">y(T) = \dot y(T)=\theta(T)=\dot \theta(T)=0</span>.</p>
-<p>In adition, there are constraints on the input <span class="math inline">\alpha(t)</span> and on the state variable <span class="math inline">\theta(t)</span>:</p>
+<p>In addition, there are constraints on the input <span class="math inline">\alpha(t)</span> and on the state variable <span class="math inline">\theta(t)</span>:</p>
 <p><span class="math display">\begin{align*}
 |\alpha(t)| &amp;\leq 100,\\
 |\theta(t)| &amp;\leq \frac{\pi}{6}.
@@ -1030,9 +1030,9 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="tasks">Tasks</h3>
 <ul>
 <li>Linearize the system around the equilibrium point <span class="math inline">y=0,\,\dot y=0,\,\theta=0,\,\dot \theta=0</span> and discretize it with a sampling time <span class="math inline">T_s=0.01\,\text{s}</span>.</li>
-<li>In Julia, design an LQ-optimal controller that gets the quadrotor from the initial to the final state in the shortest possible time you can achieve while respecting the constraints on the input and the state variable.</li>
+<li>In Julia, using the linearized model, design an LQ-optimal controller that gets the quadrotor from the initial to the vicinity of the final state (<span class="math inline">\lvert x_i(t) \rvert \leq 0.01</span> for <span class="math inline">i=1,2,3,4</span>) in the shortest possible time you can achieve while respecting the constraints on the input and the state variable.</li>
 <li>For your solution to be accepted, you need to get to the vicinity of the final state within 3 seconds.</li>
-<li>We <code>ControlSystemsBase</code> for the LQ-optimal controller synthesis.</li>
+<li>We advise you to use <code>ControlSystemsBase</code> package for the LQ-optimal controller synthesis.</li>
 <li>The controller should be implemented as a function <code>state_feedback(x, t)</code> that takes the current state <code>x</code> and the current time step <code>t</code> as input and returns the control input <span class="math inline">\alpha(t)</span>.</li>
 </ul>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -1046,7 +1046,7 @@ Ranking
 </div>
 <div class="callout-body-container callout-body">
 <p>All the solutions that meet the basic requirements will be ranked according to the time it takes for the quadrotor to reach the final state. The faster the solution, the higher the ranking.</p>
-<p><strong>The top three solutions will be awarded bonus 10% to the practial (open-book) part of the final exam.</strong></p>
+<p><strong>The top three contenders will be awarded bonus 10% (grade increase) to the practical (open-book) part of the final exam.</strong></p>
 </div>
 </div>
 <p>Your solution should be based on the following template and should be contained in a single file named <code>hw.jl</code>, which you will upload to the <a href="https://cw.felk.cvut.cz/brute">BRUTE</a> system.</p>
