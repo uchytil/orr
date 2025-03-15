@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Learning goals – B(E)3M35ORR – Optimal and Robust Control</title>
+<title>Reference tracking using LQR – B(E)3M35ORR – Optimal and Robust Control</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./dynamic_programming.html" rel="next">
-<link href="./discr_indir_hw.html" rel="prev">
+<link href="./discr_indir_DARE.html" rel="next">
+<link href="./discr_indir_LQR_inf_horizon.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -82,7 +82,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./dynamic_programming_goals.html">5. Discrete-time optimal control – dynamic programming (DP)</a></li><li class="breadcrumb-item"><a href="./dynamic_programming_goals.html">Learning goals</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./discr_indir_goals.html">4. Discrete-time optimal control – indirect approach</a></li><li class="breadcrumb-item"><a href="./discr_indir_LQR_tracking.html">Reference tracking using LQR</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -354,7 +354,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./discr_indir_LQR_tracking.html" class="sidebar-item-text sidebar-link">
+  <a href="./discr_indir_LQR_tracking.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Reference tracking using LQR</span></a>
   </div>
 </li>
@@ -395,7 +395,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./dynamic_programming_goals.html" class="sidebar-item-text sidebar-link active">
+  <a href="./dynamic_programming_goals.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Learning goals</span></a>
   </div>
 </li>
@@ -900,22 +900,15 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#knowledge-remember-and-understand" id="toc-knowledge-remember-and-understand" class="nav-link active" data-scroll-target="#knowledge-remember-and-understand">Knowledge (remember and understand)</a></li>
-  <li><a href="#skills-use-the-knowledge-to-solve-a-problem" id="toc-skills-use-the-knowledge-to-solve-a-problem" class="nav-link" data-scroll-target="#skills-use-the-knowledge-to-solve-a-problem">Skills (use the knowledge to solve a problem)</a></li>
-  </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/hurak/orr/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./dynamic_programming_goals.html">5. Discrete-time optimal control – dynamic programming (DP)</a></li><li class="breadcrumb-item"><a href="./dynamic_programming_goals.html">Learning goals</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./discr_indir_goals.html">4. Discrete-time optimal control – indirect approach</a></li><li class="breadcrumb-item"><a href="./discr_indir_LQR_tracking.html">Reference tracking using LQR</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Learning goals</h1>
+<h1 class="title">Reference tracking using LQR</h1>
 </div>
 
 
@@ -932,22 +925,9 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="knowledge-remember-and-understand" class="level2">
-<h2 class="anchored" data-anchor-id="knowledge-remember-and-understand">Knowledge (remember and understand)</h2>
-<ul>
-<li>Understand and explain the Bellman’s principle of optimality.</li>
-<li>Show how dynamic programming and Bellman’s principle of optimality can be used to give analytical solution to a discrete-time LQ-optimal control on a finite control interval.</li>
-<li>Give the Hamilton-Jacobi-Bellman (HJB) equation and explain it as a reformulation of the principle of optimality for continuous-time systems. Give also its version featuring the Hamiltonian function.</li>
-</ul>
-</section>
-<section id="skills-use-the-knowledge-to-solve-a-problem" class="level2">
-<h2 class="anchored" data-anchor-id="skills-use-the-knowledge-to-solve-a-problem">Skills (use the knowledge to solve a problem)</h2>
-<ul>
-<li>Use dynamic programming to design an optimal feedback controller in the form of a lookup table for a general (possibly nonlinear) discrete-time dynamical system.</li>
-</ul>
+<p>#TODO</p>
 
 
-</section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -1369,13 +1349,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./discr_indir_hw.html" class="pagination-link" aria-label="Homework">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Homework</span>
+      <a href="./discr_indir_LQR_inf_horizon.html" class="pagination-link" aria-label="Discrete-time LQR on an infinite horizon">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Discrete-time LQR on an infinite horizon</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./dynamic_programming.html" class="pagination-link" aria-label="DP and discrete-time optimal control">
-        <span class="nav-page-text">DP and discrete-time optimal control</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./discr_indir_DARE.html" class="pagination-link" aria-label="Discrete-time algebraic Riccati equation (DARE)">
+        <span class="nav-page-text">Discrete-time algebraic Riccati equation (DARE)</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1387,7 +1367,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>   
     <div class="nav-footer-center">
 <p>Copyright 2025, Zdeněk Hurák</p>
-<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/hurak/orr/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+<div class="toc-actions"><ul><li><a href="https://github.com/hurak/orr/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
