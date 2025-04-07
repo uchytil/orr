@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -1006,35 +1040,63 @@ window.Quarto = {
 <li><strong>Nectar Collection:</strong> Gathering nectar to convert into honey, which serves as the colony’s energy reserve for the coming non-flowering season.</li>
 </ul>
 <p>At any time <span class="math inline">t \in \left[0, t_\mathrm{f}\right]</span>, the colony allocates a fraction <span class="math inline">u(t) \in [0, 1]</span> of its foraging effort toward hive expansion, with the remaining fraction <span class="math inline">1 - u(t)</span> used for nectar collection. The hive’s ability to perform either task depends on its current size, and bees die at a natural rate proportional to their population.</p>
-<p>Let:</p>
+<p>Let</p>
 <ul>
 <li><span class="math inline">x_1(t)</span> denote the effective hive size (i.e., the number of active foragers), and</li>
 <li><span class="math inline">x_2(t)</span> the cumulative amount of nectar collected by time <span class="math inline">t</span>.</li>
 </ul>
-<p>The system dynamics are governed by:</p>
+<p>The system dynamics are governed by</p>
 <p><span class="math display">
 \begin{aligned}
 \dot{x}_1(t) &amp;= 2u(t)x_1(t) - x_1(t),\\
 \dot{x}_2(t) &amp;= (1 - u(t))x_1(t).
 \end{aligned}
 </span></p>
-<p><strong>Your objective</strong><br>
-Find the optimal allocation strategy <span class="math inline">u(t)</span> that maximizes the total nectar stored by the end of the season, i.e., maximize <span class="math inline">x_2(t_\mathrm{f})</span>.</p>
-<p><strong>Your tasks</strong></p>
+<section id="your-objective" class="level4">
+<h4 class="anchored" data-anchor-id="your-objective">Your objective</h4>
+<p>Find the optimal allocation strategy <span class="math inline">u(t)</span> that maximizes the total nectar stored by the end of the season, i.e., maximize <span class="math inline">x_2(t_\mathrm{f})</span>.</p>
+</section>
+<section id="your-tasks" class="level4">
+<h4 class="anchored" data-anchor-id="your-tasks">Your tasks</h4>
 <ol type="1">
 <li>Formulate the Hamiltonian, derive the state and co-state equations.</li>
 <li>Use Pontryagin’s maximum principle to determine the optimal control strategy <span class="math inline">u^*</span> as a function of the co-states, i.e., <span class="math inline">u^*(\lambda_1(t), \lambda_2(t))</span>.</li>
-<li>Solve the co-state equation.
+<li>Solve the co-state equations.
 <ul>
-<li>Hint 1: You know <span class="math inline">\boldsymbol{\lambda}(t_\mathrm{f})</span>.</li>
-<li>Hint 2: Knowing <span class="math inline">\boldsymbol{\lambda}(t_\mathrm{f})</span> allows you to directly write down the value of one of the co-states.</li>
-<li>Hint 3: Knowing <span class="math inline">\boldsymbol{\lambda}(t_\mathrm{f})</span>, also means knowing <span class="math inline">u^*(t_\mathrm{f})</span>.</li>
-<li>Hint 4: Since you know everything you need, but at the end of the control interval instead of the start, you need to solve the co-state equations backwards in time. This can be done by “reversing” time and solving the equations as a standard initial value problem.</li>
+<li>Hint #1: You know <span class="math inline">\boldsymbol{\lambda}(t_\mathrm{f})</span>.</li>
+<li>Hint #2: Knowing <span class="math inline">\boldsymbol{\lambda}(t_\mathrm{f})</span> allows you to directly write down the value of one of the co-states.</li>
+<li>Hint #3: Knowing <span class="math inline">\boldsymbol{\lambda}(t_\mathrm{f})</span>, also means knowing <span class="math inline">u^*(t_\mathrm{f})</span>.</li>
+<li>Hint #4: Since you know everything you need, but at the end of the control interval instead of the start, you need to solve the co-state equations backwards in time. This can be done by “reversing” time and solving the equations as a standard initial value problem.</li>
 </ul></li>
-<li>Use the co-states to express <span class="math inline">u^*</span> as purely a function of time.</li>
+<li>Use the co-states to express <span class="math inline">u^*</span> as purely a function of time (and <span class="math inline">t_\mathrm{f}</span>).</li>
 </ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Problems like this one may appear on the <strong>final exam</strong>, so focus on understanding the full derivation process—not just getting the correct implementation.</p>
+</div>
+</div>
+<p>Upload the following files as a single <em>.zip</em> file to <a href="https://cw.felk.cvut.cz/brute">BRUTE</a> system.</p>
+<ul>
+<li><code>hw.pdf</code> containing your derivation of the problem solution. We do not require a <span class="math inline">\LaTeX</span> report; handwritten notes suffice, but they <strong>must be readable</strong>.</li>
+<li><code>hw.jl</code> containing your Julia code with implementation of the optimal control based on the template below.</li>
+</ul>
+<div id="2" class="cell" data-execution_count="0">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">u_opt</span>(t, tf)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fl">1</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Your homework will be automatically evaluated by the BRUTE system based on your Julia implementation, so you can immediately see if you have arrived at the correct solution. However, points will be awarded only after a manual review of the derivation by us.</p>
 
 
+</section>
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
