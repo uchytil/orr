@@ -69,6 +69,49 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -924,8 +967,14 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#nectar-storage-vs.-hive-expansion-in-a-bee-colony" id="toc-nectar-storage-vs.-hive-expansion-in-a-bee-colony" class="nav-link active" data-scroll-target="#nectar-storage-vs.-hive-expansion-in-a-bee-colony">Nectar Storage vs.&nbsp;Hive Expansion in a Bee Colony</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/hurak/orr/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -949,8 +998,44 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="nectar-storage-vs.-hive-expansion-in-a-bee-colony" class="level2">
+<h2 class="anchored" data-anchor-id="nectar-storage-vs.-hive-expansion-in-a-bee-colony">Nectar Storage vs.&nbsp;Hive Expansion in a Bee Colony</h2>
+<p>A bee colony operates throughout a flowering season of length <span class="math inline">t_\mathrm{f}</span>. During this period, the colony must allocate its foraging effort between two key activities:</p>
+<ul>
+<li><strong>Hive Expansion:</strong> Increasing the number of worker bees to support future nectar collection (e.g., raising brood and constructing comb).</li>
+<li><strong>Nectar Collection:</strong> Gathering nectar to convert into honey, which serves as the colony’s energy reserve for the coming non-flowering season.</li>
+</ul>
+<p>At any time <span class="math inline">t \in \left[0, t_\mathrm{f}\right]</span>, the colony allocates a fraction <span class="math inline">u(t) \in [0, 1]</span> of its foraging effort toward hive expansion, with the remaining fraction <span class="math inline">1 - u(t)</span> used for nectar collection. The hive’s ability to perform either task depends on its current size, and bees die at a natural rate proportional to their population.</p>
+<p>Let:</p>
+<ul>
+<li><span class="math inline">x_1(t)</span> denote the effective hive size (i.e., the number of active foragers), and</li>
+<li><span class="math inline">x_2(t)</span> the cumulative amount of nectar collected by time <span class="math inline">t</span>.</li>
+</ul>
+<p>The system dynamics are governed by:</p>
+<p><span class="math display">
+\begin{aligned}
+\dot{x}_1(t) &amp;= 2u(t)x_1(t) - x_1(t),\\
+\dot{x}_2(t) &amp;= (1 - u(t))x_1(t).
+\end{aligned}
+</span></p>
+<p><strong>Your objective</strong><br>
+Find the optimal allocation strategy <span class="math inline">u(t)</span> that maximizes the total nectar stored by the end of the season, i.e., maximize <span class="math inline">x_2(t_\mathrm{f})</span>.</p>
+<p><strong>Your tasks</strong></p>
+<ol type="1">
+<li>Formulate the Hamiltonian, derive the state and co-state equations.</li>
+<li>Use Pontryagin’s maximum principle to determine the optimal control strategy <span class="math inline">u^*</span> as a function of the co-states, i.e., <span class="math inline">u^*(\lambda_1(t), \lambda_2(t))</span>.</li>
+<li>Solve the co-state equation.
+<ul>
+<li>Hint 1: You know <span class="math inline">\boldsymbol{\lambda}(t_\mathrm{f})</span>.</li>
+<li>Hint 2: Knowing <span class="math inline">\boldsymbol{\lambda}(t_\mathrm{f})</span> allows you to directly write down the value of one of the co-states.</li>
+<li>Hint 3: Knowing <span class="math inline">\boldsymbol{\lambda}(t_\mathrm{f})</span>, also means knowing <span class="math inline">u^*(t_\mathrm{f})</span>.</li>
+<li>Hint 4: Since you know everything you need, but at the end of the control interval instead of the start, you need to solve the co-state equations backwards in time. This can be done by “reversing” time and solving the equations as a standard initial value problem.</li>
+</ul></li>
+<li>Use the co-states to express <span class="math inline">u^*</span> as purely a function of time.</li>
+</ol>
 
 
+</section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -1390,7 +1475,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>   
     <div class="nav-footer-center">
 <p>Copyright 2025, Zdeněk Hurák</p>
-<div class="toc-actions"><ul><li><a href="https://github.com/hurak/orr/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/hurak/orr/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
