@@ -1006,7 +1006,11 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#nectar-storage-vs.-hive-expansion-in-a-bee-colony" id="toc-nectar-storage-vs.-hive-expansion-in-a-bee-colony" class="nav-link active" data-scroll-target="#nectar-storage-vs.-hive-expansion-in-a-bee-colony">Nectar Storage vs.&nbsp;Hive Expansion in a Bee Colony</a></li>
+  <li><a href="#nectar-storage-vs.-hive-expansion-in-a-bee-colony" id="toc-nectar-storage-vs.-hive-expansion-in-a-bee-colony" class="nav-link active" data-scroll-target="#nectar-storage-vs.-hive-expansion-in-a-bee-colony">Nectar storage vs.&nbsp;hive expansion in a bee colony</a>
+  <ul class="collapse">
+  <li><a href="#your-objective" id="toc-your-objective" class="nav-link" data-scroll-target="#your-objective">Your objective</a></li>
+  <li><a href="#your-tasks" id="toc-your-tasks" class="nav-link" data-scroll-target="#your-tasks">Your tasks</a></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/hurak/orr/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -1033,11 +1037,11 @@ window.Quarto = {
 
 
 <section id="nectar-storage-vs.-hive-expansion-in-a-bee-colony" class="level2">
-<h2 class="anchored" data-anchor-id="nectar-storage-vs.-hive-expansion-in-a-bee-colony">Nectar Storage vs.&nbsp;Hive Expansion in a Bee Colony</h2>
-<p>A bee colony operates throughout a flowering season of length <span class="math inline">t_\mathrm{f}</span>. During this period, the colony must allocate its foraging effort between two key activities:</p>
+<h2 class="anchored" data-anchor-id="nectar-storage-vs.-hive-expansion-in-a-bee-colony">Nectar storage vs.&nbsp;hive expansion in a bee colony</h2>
+<p>A bee colony operates throughout a flowering season of length <span class="math inline">t_\mathrm{f}</span>. During this period, the colony must allocate its foraging effort between two key activities</p>
 <ul>
-<li><strong>Hive Expansion:</strong> Increasing the number of worker bees to support future nectar collection (e.g., raising brood and constructing comb).</li>
-<li><strong>Nectar Collection:</strong> Gathering nectar to convert into honey, which serves as the colony’s energy reserve for the coming non-flowering season.</li>
+<li><strong>Hive expansion:</strong> Increasing the number of worker bees to support future nectar collection (e.g., raising brood and constructing comb).</li>
+<li><strong>Nectar collection:</strong> Gathering nectar to convert into honey, which serves as the colony’s energy reserve for the coming non-flowering season.</li>
 </ul>
 <p>At any time <span class="math inline">t \in \left[0, t_\mathrm{f}\right]</span>, the colony allocates a fraction <span class="math inline">u(t) \in [0, 1]</span> of its foraging effort toward hive expansion, with the remaining fraction <span class="math inline">1 - u(t)</span> used for nectar collection. The hive’s ability to perform either task depends on its current size, and bees die at a natural rate proportional to their population.</p>
 <p>Let</p>
@@ -1052,23 +1056,31 @@ window.Quarto = {
 \dot{x}_2(t) &amp;= (1 - u(t))x_1(t).
 \end{aligned}
 </span></p>
-<section id="your-objective" class="level4">
-<h4 class="anchored" data-anchor-id="your-objective">Your objective</h4>
-<p>Find the optimal allocation strategy <span class="math inline">u(t)</span> that maximizes the total nectar stored by the end of the season, i.e., maximize <span class="math inline">x_2(t_\mathrm{f})</span>.</p>
+<p>The hive size and nectar reserves are assumed to remain non-negative throughout the season, consistent with their physical interpretation. Also assume nonzero hive size at the beginning of the season, i.e., <span class="math inline">x_1(0) &gt; 0</span>.</p>
+<section id="your-objective" class="level3">
+<h3 class="anchored" data-anchor-id="your-objective">Your objective</h3>
+<p>Find the optimal allocation strategy <span class="math inline">u(t)</span> that maximizes the total nectar stored by the end of the season, i.e., maximize <span class="math inline">x_2(t_\mathrm{f})</span> for a fixed <span class="math inline">t_\mathrm{f}</span>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Similar problems may appear on the <strong>final exam</strong>, so focus on understanding what you are doing and why.</p>
+</div>
+</div>
 </section>
-<section id="your-tasks" class="level4">
-<h4 class="anchored" data-anchor-id="your-tasks">Your tasks</h4>
+<section id="your-tasks" class="level3">
+<h3 class="anchored" data-anchor-id="your-tasks">Your tasks</h3>
 <ol type="1">
 <li>Formulate the Hamiltonian, derive the state and co-state equations.</li>
-<li>Use Pontryagin’s maximum principle to determine the optimal control strategy <span class="math inline">u^*</span> as a function of the co-states, i.e., <span class="math inline">u^*(\lambda_1(t), \lambda_2(t))</span>.</li>
-<li>Solve the co-state equations.
-<ul>
-<li>Hint #1: You know <span class="math inline">\boldsymbol{\lambda}(t_\mathrm{f})</span>.</li>
-<li>Hint #2: Knowing <span class="math inline">\boldsymbol{\lambda}(t_\mathrm{f})</span> allows you to directly write down the value of one of the co-states.</li>
-<li>Hint #3: Knowing <span class="math inline">\boldsymbol{\lambda}(t_\mathrm{f})</span>, also means knowing <span class="math inline">u^*(t_\mathrm{f})</span>.</li>
-<li>Hint #4: Since you know everything you need, but at the end of the control interval instead of the start, you need to solve the co-state equations backwards in time. This can be done by “reversing” time and solving the equations as a standard initial value problem.</li>
-</ul></li>
-<li>Use the co-states to express <span class="math inline">u^*</span> as purely a function of time (and <span class="math inline">t_\mathrm{f}</span>).</li>
+<li>Use Pontryagin’s maximum principle to determine the optimal control strategy <span class="math inline">u^\star</span> as a function of the co-states, i.e., <span class="math inline">u^\star(\lambda_1, \lambda_2)</span>. What can be immediately concluded about the optimal control?</li>
+<li>Solve the co-state equations, to determine the co-states <span class="math inline">\boldsymbol{\lambda}(t)</span> on the interval <span class="math inline">[0, t_\mathrm{f}]</span>.</li>
+<li>Use the co-states to express <span class="math inline">u^\star</span> as purely a function of time (and <span class="math inline">t_\mathrm{f}</span>).</li>
 </ol>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -1076,24 +1088,29 @@ window.Quarto = {
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Tip
+Hints for solving the co-state equations
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Problems like this one may appear on the <strong>final exam</strong>, so focus on understanding the full derivation process—not just getting the correct implementation.</p>
+<ol type="1">
+<li>There is a way to determine the terminal condition <span class="math inline">\boldsymbol{\lambda}(t_\mathrm{f})</span>.</li>
+<li>This allows you to immediately determine the value of one of the co-states.</li>
+<li>From <span class="math inline">\boldsymbol{\lambda}(t_\mathrm{f})</span>, you can also determine <span class="math inline">u^\star(t_\mathrm{f})</span> using your earlier result.</li>
+<li>Since all necessary information is given at the end of the control interval rather than the beginning, you’ll need to solve the co-state equations backwards in time. This can be done by reversing time and solving the system as a standard initial value problem.</li>
+</ol>
 </div>
 </div>
 <p>Upload the following files as a single <em>.zip</em> file to <a href="https://cw.felk.cvut.cz/brute">BRUTE</a> system.</p>
 <ul>
 <li><code>hw.pdf</code> containing your derivation of the problem solution. We do not require a <span class="math inline">\LaTeX</span> report; handwritten notes suffice, but they <strong>must be readable</strong>.</li>
-<li><code>hw.jl</code> containing your Julia code with implementation of the optimal control based on the template below.</li>
+<li><code>hw.jl</code>, based on the template below, containing a function <code>u_opt(t, tf)</code> that implements the <strong>final closed-form expression</strong> for your derived optimal control <span class="math inline">u^\star(t)</span>.</li>
 </ul>
 <div id="2" class="cell" data-execution_count="0">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">u_opt</span>(t, tf)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fl">1</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Your homework will be automatically evaluated by the BRUTE system based on your Julia implementation, so you can immediately see if you have arrived at the correct solution. However, points will be awarded only after a manual review of the derivation by us.</p>
+<p>Your homework will be automatically evaluated by the BRUTE system based on your Julia implementation, so you can immediately see if you have arrived at the correct solution. However, full point will be awarded only after a manual review of the derivation by us.</p>
 
 
 </section>
