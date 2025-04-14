@@ -711,6 +711,12 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./cont_numerical_goals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Learning goals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./cont_numerical_indirect.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Numerical methods for indirect approach</span></a>
   </div>
@@ -1104,7 +1110,7 @@ H(\bm x, \bm u, \bm \lambda) = \bm \lambda^\top\, (\mathbf A\bm x+\mathbf B\bm u
 <p><span class="theorem-title"><strong>Example 1 (LQR on a finite and fixed time horizon with a fixed final state approached as a two-poing BVP)</strong></span> &nbsp;</p>
 <div id="cell-fig-lqr-bvp-fixed-final-state" class="cell" data-execution_count="1">
 <details class="code-fold">
-<summary>Code</summary>
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">LinearAlgebra</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Random</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">Random</span>.<span class="fu">seed!</span>(<span class="fl">1234</span>)</span>
@@ -1409,7 +1415,7 @@ J^\mathrm{aug}(t,\bm x(\cdot),\dot{\mathbf{x}}(\cdot),\bm u(\cdot),\bm \lambda(\
 <p><span class="theorem-title"><strong>Example 2 (LQR on a finite and fixed time horizon with a free final state approached as a two-point BVP)</strong></span> &nbsp;</p>
 <div id="cell-fig-lqr-bvp-free-final-state" class="cell" data-execution_count="1">
 <details class="code-fold">
-<summary>Code</summary>
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">LinearAlgebra</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Random</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="bu">Random</span>.<span class="fu">seed!</span>(<span class="fl">1234</span>)</span>
@@ -1594,7 +1600,7 @@ k(t) = -\frac{b}{r}s(t).
 </span></p>
 <div id="cell-fig-scalar-riccati-differential-equation" class="cell" data-execution_count="1">
 <details class="code-fold">
-<summary>Code</summary>
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">DifferentialEquations</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">solve_scalar_continuous_time_differential_riccati_equation</span>(a,b,q,r,s₁,tspan)</span>
@@ -1701,7 +1707,7 @@ Figure&nbsp;4: The solution to a scalar Riccati differential equation and the co
 <p>We can now simulate the response to some nonzero initial state using this time-varying proportional state feedback control.</p>
 <div id="cell-fig-response-scalar-time-varying-LQR" class="cell" data-execution_count="1">
 <details class="code-fold">
-<summary>Code</summary>
+<summary>Show the code</summary>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>x₀ <span class="op">=</span> <span class="fl">1.0</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Interpolations</span></span>
