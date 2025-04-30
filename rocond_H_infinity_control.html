@@ -126,7 +126,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./rocond_mixed_sensitivity.html">12. Robust control</a></li><li class="breadcrumb-item"><a href="./rocond_H_infinity_control.html">Hinfinity-optimal control</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./rocond_goals.html">12. Robust control</a></li><li class="breadcrumb-item"><a href="./rocond_H_infinity_control.html">Hinfinity-optimal control</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -828,6 +828,12 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./roban_goals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Learning goals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./roban_uncertainty.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Uncertainty (in) modelling</span></a>
   </div>
@@ -873,6 +879,12 @@ window.Quarto = {
           </a> 
       </div>
       <ul id="quarto-sidebar-section-14" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./rocond_goals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Learning goals</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./rocond_mixed_sensitivity.html" class="sidebar-item-text sidebar-link">
@@ -1007,7 +1019,7 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./rocond_mixed_sensitivity.html">12. Robust control</a></li><li class="breadcrumb-item"><a href="./rocond_H_infinity_control.html">Hinfinity-optimal control</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./rocond_goals.html">12. Robust control</a></li><li class="breadcrumb-item"><a href="./rocond_H_infinity_control.html">Hinfinity-optimal control</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Hinfinity-optimal control</h1>
 </div>
@@ -1029,7 +1041,7 @@ window.Quarto = {
 <p>Here we formulate the general problem of <span class="math inline">\mathcal{H}_\infty</span>-optimal control. There are two motivations for this. First, it gives the general framework within which we can <strong>formulate and solve the mixed-sensitivity problem</strong> defined in the frequency domain that we discused previously. Second, it allows us to consider <strong>exploit the time-domain (or signal)</strong> interpretation of the <span class="math inline">\mathcal{H}_\infty</span> norm of a system to formulate a new class of problems that can be solved with these optimization tools. For the latter, recall that <span class="math display">
 \|\mathbf G\|_{\infty} = \sup_{u\in\mathcal{L}_{2}\backslash \emptyset}\frac{\|\bm y\|_2}{\|\bm u\|_2},
 </span> in which we allow for vector input and output signals, hence MIMO systems, from the very beginning.</p>
-<p>Now, for particular control requirements, we build the generalized plant <span class="math inline">\mathbf P</span> such that after forming the feedback interconnection with the controller <span class="math inline">\mathbf K</span> as in <a href="#fig-lower-LFT-with-named-variables" class="quarto-xref">Figure&nbsp;1</a></p>
+<p>Now, for particular control requirements, we build the generalized plant <span class="math inline">\mathbf P</span> such that after forming the feedback interconnection with the controller <span class="math inline">\mathbf K</span> as in <a href="#fig-lower-LFT-with-named-variables" class="quarto-xref">Fig.&nbsp;1</a></p>
 <div id="fig-lower-LFT-with-named-variables" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-lower-LFT-with-named-variables-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1055,7 +1067,7 @@ Figure&nbsp;1: Lower LFT of the generalized plant and the controller
 W_1S\\W_2KS\\W_3T
 \end{bmatrix}
 \right\|_{\infty},
-</span> which obviously considers a closed-loop system with one input and three outputs. With only one exogenous input, we must choose its role. Say, the only exogenous input is the reference signal. The closed-loop system for which the norm is minimized is in the following block diagram <a href="#fig-mixed-sensitivity-as-standard-H-infinity" class="quarto-xref">Figure&nbsp;2</a>.</p>
+</span> which obviously considers a closed-loop system with one input and three outputs. With only one exogenous input, we must choose its role. Say, the only exogenous input is the reference signal. The closed-loop system for which the norm is minimized is in the following block diagram <a href="#fig-mixed-sensitivity-as-standard-H-infinity" class="quarto-xref">Fig.&nbsp;2</a>.</p>
 <div id="fig-mixed-sensitivity-as-standard-H-infinity" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-mixed-sensitivity-as-standard-H-infinity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">

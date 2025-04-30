@@ -83,7 +83,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./roban_uncertainty.html">11. Uncertainty modelling and robustness analysis</a></li><li class="breadcrumb-item"><a href="./roban_software.html">Software</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./roban_goals.html">11. Uncertainty modelling and robustness analysis</a></li><li class="breadcrumb-item"><a href="./roban_software.html">Software</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -785,6 +785,12 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./roban_goals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Learning goals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./roban_uncertainty.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Uncertainty (in) modelling</span></a>
   </div>
@@ -830,6 +836,12 @@ ul.task-list li input[type="checkbox"] {
           </a> 
       </div>
       <ul id="quarto-sidebar-section-14" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./rocond_goals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Learning goals</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./rocond_mixed_sensitivity.html" class="sidebar-item-text sidebar-link">
@@ -949,13 +961,20 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#julia" id="toc-julia" class="nav-link active" data-scroll-target="#julia">Julia</a></li>
+  <li><a href="#matlab" id="toc-matlab" class="nav-link" data-scroll-target="#matlab">Matlab</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/hurak/orr/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./roban_uncertainty.html">11. Uncertainty modelling and robustness analysis</a></li><li class="breadcrumb-item"><a href="./roban_software.html">Software</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./roban_goals.html">11. Uncertainty modelling and robustness analysis</a></li><li class="breadcrumb-item"><a href="./roban_software.html">Software</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Software</h1>
 </div>
@@ -974,10 +993,51 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>The primary tool for us in this part of the course is the <a href="https://www.mathworks.com/products/robust.html">Robust Control Toolbox for Matlab</a>. A nice benefit is that accompanying video tutorials by Brian Douglas <a href="https://www.mathworks.com/videos/series/robust-control.html">are available</a>.</p>
-<p>Alternatives in other languages exist, but very often are less well developed and/or documented. A notable exception is <a href="https://juliacontrol.github.io/RobustAndOptimalControl.jl/dev/">RobustAndOptimalControl.jl</a> for Julia.</p>
+<section id="julia" class="level2">
+<h2 class="anchored" data-anchor-id="julia">Julia</h2>
+<ul>
+<li><p><a href="https://juliacontrol.github.io/ControlSystems.jl/stable/">ControlSystems.jl</a></p>
+<ul>
+<li><a href="https://juliacontrol.github.io/ControlSystems.jl/stable/lib/analysis/#ControlSystemsBase.gangoffour-Tuple%7BLTISystem,%20LTISystem%7D">gangoffour</a></li>
+<li><a href="https://juliacontrol.github.io/ControlSystems.jl/stable/lib/synthesis/#ControlSystemsBase.lft">lft</a></li>
+<li><a href="https://juliacontrol.github.io/ControlSystems.jl/stable/lib/analysis/#ControlSystemsBase.margin-Tuple%7BLTISystem,%20AbstractVector%7B%3C:Real%7D%7D">margin</a></li>
+<li><a href="https://juliacontrol.github.io/ControlSystems.jl/stable/lib/plotting/#ControlSystemsBase.marginplot">marginplot</a></li>
+</ul></li>
+<li><p><a href="https://juliacontrol.github.io/RobustAndOptimalControl.jl/dev/">RobustAndOptimalControl.jl</a></p>
+<ul>
+<li><a href="https://juliacontrol.github.io/RobustAndOptimalControl.jl/dev/uncertainty/">Uncertainty modelling</a></li>
+<li><a href="https://juliacontrol.github.io/RobustAndOptimalControl.jl/dev/api/#RobustAndOptimalControl.hinfnorm2-Tuple%7BLTISystem%7D">hinfnorm2</a></li>
+<li><a href="https://juliacontrol.github.io/RobustAndOptimalControl.jl/dev/api/#RobustAndOptimalControl.δr">δr</a></li>
+<li><a href="https://juliacontrol.github.io/RobustAndOptimalControl.jl/dev/api/#RobustAndOptimalControl.uss">uss</a></li>
+<li><a href="">lft</a></li>
+<li><a href="https://juliacontrol.github.io/RobustAndOptimalControl.jl/dev/api/#RobustAndOptimalControl.diskmargin">diskmargin</a></li>
+<li><a href="https://juliacontrol.github.io/RobustAndOptimalControl.jl/dev/api/#RobustAndOptimalControl.makeweight-Tuple%7BAny,%20Number,%20Any%7D">makeweight</a></li>
+<li><a href="">structured_singular_value</a></li>
+</ul></li>
+<li><p><a href="https://github.com/baggepinnen/MonteCarloMeasurements.jl">MonteCarloMeasurements.jl</a></p></li>
+</ul>
+</section>
+<section id="matlab" class="level2">
+<h2 class="anchored" data-anchor-id="matlab">Matlab</h2>
+<ul>
+<li><p><a href="https://www.mathworks.com/help/control">Control System Toolbox for Matlab</a></p>
+<ul>
+<li><a href="https://www.mathworks.com/help/control/ref/dynamicsystem.norm.html">norm</a></li>
+<li><a href="https://www.mathworks.com/help/control/ref/inputoutputmodel.lft.html">lff</a></li>
+</ul></li>
+<li><p><a href="https://www.mathworks.com/products/robust.html">Robust Control Toolbox for Matlab</a>. A nice benefit is that accompanying video tutorials by Brian Douglas <a href="https://www.mathworks.com/videos/series/robust-control.html">are available</a>.</p>
+<ul>
+<li><a href="https://www.mathworks.com/help/robust/represent-uncertain-systems.html">Uncertain system representation</a></li>
+<li><a href="https://www.mathworks.com/help/robust/ref/dynamicsystem.hinfnorm.html">hinfnorm</a></li>
+<li><a href="https://www.mathworks.com/help/robust/ref/ureal.html">ureal</a></li>
+<li><a href="https://www.mathworks.com/help/robust/ref/ultidyn.html">ultidyn</a></li>
+<li><a href="https://www.mathworks.com/help/robust/ref/usample.html">usample</a></li>
+<li><a href="https://www.mathworks.com/help/robust/ref/inputoutputmodel.lftdata.html">lftdata</a></li>
+</ul></li>
+</ul>
 
 
+</section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -1399,7 +1459,7 @@ ul.task-list li input[type="checkbox"] {
     </div>   
     <div class="nav-footer-center">
 <p>Copyright 2025, Zdeněk Hurák</p>
-<div class="toc-actions"><ul><li><a href="https://github.com/hurak/orr/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/hurak/orr/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

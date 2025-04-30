@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Uncertainty modelling – B(E)3M35ORR – Optimal and Robust Control</title>
+<title>Learning goals – B(E)3M35ORR – Optimal and Robust Control</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,6 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./rocond_mixed_sensitivity.html" rel="next">
+<link href="./roban_hw.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -68,6 +70,49 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -81,9 +126,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
-      B(E)3M35ORR – Optimal and Robust Control
-      </li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./rocond_goals.html">12. Robust control</a></li><li class="breadcrumb-item"><a href="./rocond_goals.html">Learning goals</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -785,6 +828,12 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-13" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./roban_goals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Learning goals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./roban_uncertainty.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Uncertainty (in) modelling</span></a>
   </div>
@@ -830,6 +879,12 @@ ul.task-list li input[type="checkbox"] {
           </a> 
       </div>
       <ul id="quarto-sidebar-section-14" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./rocond_goals.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Learning goals</span></a>
+  </div>
+</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./rocond_mixed_sensitivity.html" class="sidebar-item-text sidebar-link">
@@ -949,15 +1004,22 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#knowledge-remember-and-understand" id="toc-knowledge-remember-and-understand" class="nav-link active" data-scroll-target="#knowledge-remember-and-understand">Knowledge (remember and understand)</a></li>
+  <li><a href="#skills-use-the-knowledge-to-solve-a-problem" id="toc-skills-use-the-knowledge-to-solve-a-problem" class="nav-link" data-scroll-target="#skills-use-the-knowledge-to-solve-a-problem">Skills (use the knowledge to solve a problem)</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/hurak/orr/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./rocond_goals.html">12. Robust control</a></li><li class="breadcrumb-item"><a href="./rocond_goals.html">Learning goals</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Uncertainty modelling</h1>
+<h1 class="title">Learning goals</h1>
 </div>
 
 
@@ -974,8 +1036,22 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="knowledge-remember-and-understand" class="level2">
+<h2 class="anchored" data-anchor-id="knowledge-remember-and-understand">Knowledge (remember and understand)</h2>
+<ul>
+<li>Give the general optimization criterion for the control-design procedure based on minimizing the <span class="math inline">\mathcal H_\infty</span>-norm of the <em>mixed sensitivity</em> function.</li>
+<li>Explain the control design procedure based on minimizing the <span class="math inline">\mathcal H_\infty</span>-norm of the <em>linear fractional transformation (LFT)</em> of a <em>generalized plant</em> and a stabilizing controller.</li>
+<li><del>Explain the control design procedure called 𝜇-synthesis and aiming at achieving robust stability in presence of structured uncertainty. Show how the requirement of robust performance can be included in this robust stabilization framework (the answer: by including an artificial uncertainty block corresponding to performance specs).</del></li>
+</ul>
+</section>
+<section id="skills-use-the-knowledge-to-solve-a-problem" class="level2">
+<h2 class="anchored" data-anchor-id="skills-use-the-knowledge-to-solve-a-problem">Skills (use the knowledge to solve a problem)</h2>
+<ul>
+<li>Design a robust controller by <span class="math inline">\mathcal H_\infty</span> norm minimization (your task is actually just to formulate the control design problem as the optimization problem, the actual numerical job of optimization can be relegated to an available numerical solver). Namely, you should master the technique of control design by minimizing the <span class="math inline">\mathcal H_\infty</span> norm of <em>mixed sensitivity</em> function but you should also be able to formulate (and use Matlab to solve) the general <span class="math inline">\mathcal H_\infty</span>-optimal control problem. <del>A closely related design procedure that you should master is that of 𝜇 synthesis.</del></li>
+</ul>
 
 
+</section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -1377,6 +1453,18 @@ ul.task-list li input[type="checkbox"] {
     }
   });
   </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./roban_hw.html" class="pagination-link" aria-label="Homework">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Homework</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./rocond_mixed_sensitivity.html" class="pagination-link" aria-label="Mixed sensitivity design">
+        <span class="nav-page-text">Mixed sensitivity design</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
@@ -1385,7 +1473,7 @@ ul.task-list li input[type="checkbox"] {
     </div>   
     <div class="nav-footer-center">
 <p>Copyright 2025, Zdeněk Hurák</p>
-<div class="toc-actions"><ul><li><a href="https://github.com/hurak/orr/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/hurak/orr/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>
